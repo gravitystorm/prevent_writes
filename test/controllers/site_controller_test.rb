@@ -1,10 +1,17 @@
 require 'test_helper'
 
 class SiteControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-  def test_site_index
+  # Test the index page
+  def test_index
+    assert_equal :writing, ActiveRecord::Base.current_role
+    # user = User.count
+
     get root_path
+
+    assert_equal :writing, ActiveRecord::Base.current_role
+    u = User.new(name: 'bob')
+    u.save!
+
+    assert true
   end
 end
